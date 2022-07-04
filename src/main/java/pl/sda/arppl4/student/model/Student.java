@@ -1,8 +1,8 @@
 package pl.sda.arppl4.student.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +26,8 @@ public class Student {
     private String indexNumber;
     private LocalDate dataUrodzenia;
 
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
     private Set<Ocena> oceny;
 
     public Student(String imie, String nazwisko, String indexNumber, LocalDate dataUrodzenia) {
@@ -35,3 +37,4 @@ public class Student {
         this.dataUrodzenia = dataUrodzenia;
     }
 }
+

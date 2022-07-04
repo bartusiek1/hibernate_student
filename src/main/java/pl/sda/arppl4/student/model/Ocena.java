@@ -1,9 +1,7 @@
 package pl.sda.arppl4.student.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -22,4 +20,16 @@ public class Ocena {
 
     @Enumerated(EnumType.STRING)
     private Przedmiot przedmiot;
+
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Student student;
+
+    public Ocena(LocalDateTime wystawienieOceny, Double ocena, Przedmiot przedmiot, Student student) {
+        this.wystawienieOceny = wystawienieOceny;
+        this.ocena = ocena;
+        this.przedmiot = przedmiot;
+        this.student = student;
+    }
 }
